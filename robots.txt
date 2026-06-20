@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://marcinsufa.github.io/marcin-sufa-portfolio
+Sitemap: https://marcinsufa.github.io/marcin-sufa-portfolio/sitemap.xml
