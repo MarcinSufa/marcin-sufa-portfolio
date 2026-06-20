@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Design tokens — mapped into Tailwind v4 theme so utilities
+   like `bg-surface`, `text-text2`, `border-border`, `text-accent`
+   resolve to the live CSS variables and react to theme changes.
+   ============================================================ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text2: var(--text2);
+  --color-text3: var(--text3);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-accent2: var(--accent2);
+
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-sans: var(--font-ibm-plex-sans), "IBM Plex Sans", sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", monospace;
+}
+
+/* ===== Dark theme (default) ===== */
+:root {
+  --bg: #131019;
+  --bg2: #17141e;
+  --surface: #1c1925;
+  --surface2: #231f2d;
+  --border: #302a39;
+  --text: #f1ece4;
+  --text2: #aaa39b;
+  --text3: #8b8590; /* WCAG AA: ~4.6:1 on --bg */
+  --ink: #1a1014;
+  --accent: #ff8a5c;
+  --accent2: #ffb38c;
+  --accent-rgb: 255, 138, 92;
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+/* ===== Light theme ===== */
+.theme-light {
+  --bg: #f4f0e8;
+  --bg2: #ece7dd;
+  --surface: #ffffff;
+  --surface2: #f8f4ec;
+  --border: #e4ded1;
+  --text: #1b1518;
+  --text2: #5e574e;
+  --text3: #6f685f; /* WCAG AA: ~4.6:1 on --bg */
+  --ink: #ffffff;
+  --accent: #c2421d; /* WCAG AA for small text: ~4.5:1 on --bg / --surface */
+  --accent2: #ff8a5c;
+  --accent-rgb: 194, 66, 29;
+  --shadow: rgba(40, 30, 20, 0.12);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* Visible keyboard focus for interactive elements. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Skip-to-content link: off-screen until focused (WCAG 2.4.1). */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* Collapse the loop "constants" grid to a single column on small screens. */
+.loop-cols {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 540px) {
+  .loop-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+/* Reusable horizontal page padding (overridable on mobile) */
+.pad-x {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media (max-width: 720px) {
+  .pad-x {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ============================================================
+   Keyframes (ported 1:1 from the Claude design)
+   ============================================================ */
+@keyframes floatGlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(36px, -26px) scale(1.12); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.82); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+@keyframes nodefloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-7px); }
+}
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.32); }
+  50% { transform: scaleY(1); }
+}
+@keyframes scan {
+  0% { transform: translateX(-140%); }
+  100% { transform: translateX(260%); }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+@keyframes spinRev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes ringdash {
+  to { stroke-dashoffset: -280; }
+}
+
+/* ============================================================
+   Scroll-reveal: elements tagged with .reveal start hidden and
+   are revealed by the Reveal client component (adds .is-visible).
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   Respect reduced-motion: stop the decorative loops & reveals.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
