@@ -204,6 +204,10 @@ a {
 @keyframes ringdash {
   to { stroke-dashoffset: -280; }
 }
+@keyframes fieldIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 /* ============================================================
    Scroll-reveal: elements tagged with .reveal start hidden and

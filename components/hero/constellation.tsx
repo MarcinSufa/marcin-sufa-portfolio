@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { agentChips, hero } from "@/lib/content";
 import { HoloTerminal } from "@/components/hero/holo-terminal";
 import { clampDpr, watchVisibility } from "@/lib/browser";
@@ -245,13 +244,16 @@ export function Constellation() {
               "radial-gradient(circle, rgba(var(--accent-rgb),0.20), transparent 62%)",
           }}
         />
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element -- responsive srcset on a static export; next/image can't optimize on GitHub Pages */}
+        <img
           src={hero.portrait.src}
-          alt={hero.portrait.alt}
-          width={2528}
-          height={1692}
-          priority
+          srcSet={`${hero.portrait.srcSmall} 640w, ${hero.portrait.src} 1160w`}
           sizes="(max-width: 720px) 90vw, 560px"
+          alt={hero.portrait.alt}
+          width={hero.portrait.width}
+          height={hero.portrait.height}
+          fetchPriority="high"
+          decoding="async"
           className="relative block w-full"
           style={{ filter: "var(--portrait-shadow)" }}
         />

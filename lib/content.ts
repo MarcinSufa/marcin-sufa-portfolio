@@ -43,7 +43,10 @@ export const hero = {
   subhead:
     "Senior frontend engineer and indie builder. I take products from first pixel to production — and orchestrate a fleet of AI agents to ship at the pace of a whole team.",
   portrait: {
-    src: "/assets/marcin-orchestrator.png",
+    src: "/assets/marcin-orchestrator-1160.webp",
+    srcSmall: "/assets/marcin-orchestrator-640.webp",
+    width: 1160,
+    height: 776,
     alt: "Marcin Sufa — agent orchestrator",
   },
 } as const;
@@ -262,7 +265,7 @@ export const projects: Project[] = [
     techs: ["MCP", "TypeScript", "Semantic search", "Encryption"],
     link: "https://exovault.co",
     linkLabel: "Visit exovault.co ↗",
-    screenshot: "/assets/exovault-shot.png",
+    screenshot: "/assets/exovault-shot.webp",
     screenshotPlaceholder: "ExoVault",
   },
   {
@@ -273,7 +276,7 @@ export const projects: Project[] = [
     desc: "A multi-agent cockpit: launch agents into isolated git worktrees, watch them work in live terminal panes, and gate their specs before they run. The control room for an agent fleet.",
     techs: ["Electron", "Multi-agent", "Git worktrees"],
     linkLabel: "Private — in development",
-    screenshot: "/assets/fractal-shot.png",
+    screenshot: "/assets/fractal-shot.webp",
     screenshotPlaceholder: "Fractal",
   },
   {
@@ -285,7 +288,7 @@ export const projects: Project[] = [
     techs: ["Next.js", "Prisma", "PostgreSQL", "ElevenLabs", "Coolify"],
     link: "https://asistel.pl",
     linkLabel: "Visit asistel.pl ↗",
-    screenshot: "/assets/asistel-shot.png",
+    screenshot: "/assets/asistel-shot.webp",
     screenshotPlaceholder: "Asistel",
   },
   {
@@ -481,7 +484,7 @@ export const stackGroups: StackGroup[] = [
  * ---------------------------------------------------------------- */
 export const about = {
   heading: "I teach machines to remember.",
-  portrait: { src: "/assets/marcin-portrait.png", alt: "Marcin Sufa" },
+  portrait: { src: "/assets/marcin-portrait.webp", width: 720, height: 634, alt: "Marcin Sufa" },
   paragraphs: [
     "I'm Marcin, a frontend engineer and indie builder based in Warsaw. I build in public as @smolexander, mostly skills and plugins for Claude Code.",
     "As a kid I struggled with my memory, and it taught me how much of who we are is built on it. Memory shapes how we think and how we perform. So when I started working with AI agents, their forgetting was the first thing I wanted to fix. That's ExoVault, my side project: an encrypted, MCP-native memory layer that lets agents remember across sessions, and gives them an identity of their own.",

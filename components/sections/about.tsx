@@ -35,9 +35,10 @@ export function About() {
             <Image
               src={about.portrait.src}
               alt={about.portrait.alt}
-              width={809}
-              height={712}
+              width={about.portrait.width}
+              height={about.portrait.height}
               sizes="(max-width: 720px) 90vw, 360px"
+              loading="lazy"
               className="absolute inset-0 h-full w-full object-cover object-[66%_22%] grayscale contrast-[1.05]"
             />
             <div
