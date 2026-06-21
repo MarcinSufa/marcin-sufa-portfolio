@@ -233,6 +233,37 @@ export function Constellation() {
       className="relative mx-auto w-full max-w-[580px]"
       style={{ aspectRatio: "560 / 600" }}
     >
+      {/* Mobile-only static backdrop: warm glow + concentric "orbit" rings that
+          echo the orchestrator theme and fill the space the animated field
+          leaves on phones. Pure CSS/SVG — no JS, no animation, no perf cost. */}
+      <div aria-hidden className="absolute inset-0 z-0 hidden max-[720px]:block">
+        <div
+          className="absolute left-1/2 top-[42%] aspect-square w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(var(--accent-rgb),0.16), transparent 62%)",
+          }}
+        />
+        <svg
+          viewBox="0 0 400 400"
+          preserveAspectRatio="xMidYMid meet"
+          className="absolute left-1/2 top-[42%] aspect-square w-[98%] -translate-x-1/2 -translate-y-1/2"
+          fill="none"
+        >
+          <circle cx="200" cy="200" r="70" stroke="var(--border)" strokeWidth="1" strokeDasharray="2 8" />
+          <circle cx="200" cy="200" r="120" stroke="var(--border)" strokeWidth="1" strokeDasharray="2 8" />
+          <circle
+            cx="200"
+            cy="200"
+            r="172"
+            stroke="rgba(var(--accent-rgb),0.42)"
+            strokeWidth="1.2"
+            strokeDasharray="5 10"
+          />
+          <circle cx="200" cy="200" r="3" fill="rgba(var(--accent-rgb),0.7)" />
+        </svg>
+      </div>
+
       <canvas
         ref={backRef}
         aria-hidden
