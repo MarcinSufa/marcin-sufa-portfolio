@@ -34,7 +34,7 @@ export function Contact() {
           <a
             href={socials.x}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-inherit no-underline transition-colors hover:text-accent"
           >
             ↗ @smolexander
@@ -42,7 +42,7 @@ export function Contact() {
           <a
             href={socials.github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-inherit no-underline transition-colors hover:text-accent"
           >
             ↗ github.com/MarcinSufa
@@ -50,7 +50,7 @@ export function Contact() {
           <a
             href={socials.linkedin}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-inherit no-underline transition-colors hover:text-accent"
           >
             ↗ linkedin

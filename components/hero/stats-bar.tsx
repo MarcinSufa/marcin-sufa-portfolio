@@ -20,16 +20,19 @@ function CountUp({ stat }: { stat: Stat }) {
     const el = ref.current;
     if (!el || !("IntersectionObserver" in window)) return;
 
+    // Already visible at mount (above the fold) or reduced motion: keep the
+    // final value — no count-up, so no final->0->count flash. Only below-the-
+    // fold cells reset to 0 (off-screen, invisibly) and animate on scroll-in.
+    const onScreen = el.getBoundingClientRect().top < window.innerHeight * 0.9;
+    if (onScreen || prefersReducedMotion()) return;
+
+    setDisplay(format(0, stat));
     let raf = 0;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           observer.unobserve(entry.target);
-          if (prefersReducedMotion()) {
-            setDisplay(format(stat.count, stat));
-            return;
-          }
           const duration = 1100;
           const start = performance.now();
           const step = (now: number) => {

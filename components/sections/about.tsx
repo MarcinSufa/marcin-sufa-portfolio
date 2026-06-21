@@ -16,7 +16,7 @@ function renderIntro(text: string) {
       <a
         href={socials.x}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="text-accent no-underline"
       >
         {HANDLE}
@@ -44,7 +44,7 @@ export function About() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, transparent 55%, rgba(19,16,25,0.80))",
+                  "linear-gradient(180deg, transparent 55%, var(--portrait-overlay))",
               }}
             />
           </div>

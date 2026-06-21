@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteUrl } from "@/lib/site";
+import { hero } from "@/lib/content";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -31,8 +32,7 @@ export const metadata: Metadata = {
     default: "Marcin Sufa — AI-native Frontend Engineer",
     template: "%s · Marcin Sufa",
   },
-  description:
-    "Senior frontend engineer and indie builder. I take products from first pixel to production — and orchestrate a fleet of AI agents to ship at the pace of a whole team.",
+  description: hero.subhead,
   keywords: [
     "Marcin Sufa",
     "frontend engineer",
@@ -50,15 +50,13 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     title: "Marcin Sufa — AI-native Frontend Engineer",
-    description:
-      "Senior frontend engineer and indie builder who orchestrates a fleet of AI agents to ship at the pace of a whole team.",
+    description: hero.subhead,
     siteName: "Marcin Sufa",
   },
   twitter: {
     card: "summary_large_image",
     title: "Marcin Sufa — AI-native Frontend Engineer",
-    description:
-      "Senior frontend engineer and indie builder who orchestrates a fleet of AI agents to ship at the pace of a whole team.",
+    description: hero.subhead,
     creator: "@smolexander",
   },
   alternates: { canonical: siteUrl },

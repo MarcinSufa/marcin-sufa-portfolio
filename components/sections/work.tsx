@@ -1,12 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { projects, ossTools, socials } from "@/lib/content";
+import { asset } from "@/lib/site";
+
+const PANEL_ID = "work-panel";
+const tabId = (i: number) => `work-tab-${i}`;
 
 export function Work() {
   const [active, setActive] = useState(0);
   const project = projects[active];
+  const tablistRef = useRef<HTMLDivElement | null>(null);
+
+  const onTabKeyDown = (e: React.KeyboardEvent, i: number) => {
+    const last = projects.length - 1;
+    let next: number | null = null;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = i === last ? 0 : i + 1;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = i === 0 ? last : i - 1;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = last;
+    if (next === null) return;
+    e.preventDefault();
+    setActive(next);
+    const tabs = tablistRef.current?.querySelectorAll<HTMLElement>('[role="tab"]');
+    tabs?.[next]?.focus();
+  };
 
   return (
     <section id="work" className="pad-x mx-auto max-w-[1180px] px-10 pb-5 pt-20">
@@ -26,7 +45,7 @@ export function Work() {
         <a
           href={socials.github}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="font-mono text-[12.5px] text-text2 no-underline transition-colors hover:text-accent"
         >
           all on github ↗
@@ -34,15 +53,25 @@ export function Work() {
       </Reveal>
 
       <Reveal className="mt-8">
-        <div className="flex flex-wrap gap-2">
+        <div
+          ref={tablistRef}
+          role="tablist"
+          aria-label="Projects"
+          className="flex flex-wrap gap-2"
+        >
           {projects.map((p, i) => {
             const isActive = i === active;
             return (
               <button
                 key={p.name}
                 type="button"
+                role="tab"
+                id={tabId(i)}
+                aria-selected={isActive}
+                aria-controls={PANEL_ID}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => setActive(i)}
-                aria-pressed={isActive}
+                onKeyDown={(e) => onTabKeyDown(e, i)}
                 className={`rounded-[10px] border px-[18px] py-[10px] font-mono text-[12.5px] font-semibold transition-colors ${
                   isActive
                     ? "border-accent bg-accent text-ink"
@@ -55,14 +84,20 @@ export function Work() {
           })}
         </div>
 
-        <div className="mt-4 overflow-hidden rounded-[18px] border border-border bg-surface">
+        <div
+          id={PANEL_ID}
+          role="tabpanel"
+          aria-labelledby={tabId(active)}
+          tabIndex={0}
+          className="mt-4 overflow-hidden rounded-[18px] border border-border bg-surface"
+        >
           <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(330px,1fr))]">
             <div className="relative border-b border-border bg-surface2 p-[22px] md:border-b-0 md:border-r">
               <div className="relative flex min-h-[320px] w-full items-center justify-center overflow-hidden rounded-[12px] border border-border bg-bg2">
                 {project.screenshot ? (
                   // eslint-disable-next-line @next/next/no-img-element -- animated GIF preview; next/image would freeze it
                   <img
-                    src={project.screenshot}
+                    src={asset(project.screenshot)}
                     alt={`${project.title} preview`}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
@@ -108,7 +143,7 @@ export function Work() {
                   <a
                     href={project.link}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-block rounded-[10px] bg-accent px-[22px] py-3 font-display text-[14px] font-semibold text-ink no-underline transition-colors hover:bg-accent2"
                   >
                     {project.linkLabel}
@@ -134,7 +169,7 @@ export function Work() {
               key={tool.name}
               href={tool.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="block rounded-[12px] border border-border bg-surface px-5 py-[18px] no-underline transition-[transform,border-color] duration-200 hover:-translate-y-[3px] hover:border-accent"
             >
               <div className="flex items-center justify-between gap-2">

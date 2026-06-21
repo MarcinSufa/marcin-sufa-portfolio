@@ -1,0 +1,14 @@
+# gitleaks configuration — secret scanning for this repo.
+# Run locally / in CI:  gitleaks detect --source . --redact
+title = "marcin-sufa-portfolio"
+
+# Inherit gitleaks' full set of built-in secret-detection rules.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Non-secret paths"
+paths = [
+  '''(^|/)pnpm-lock\.yaml$''',
+  '''(^|/)public/assets/.*''',
+]

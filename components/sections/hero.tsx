@@ -75,7 +75,7 @@ export function Hero() {
             <a
               href={socials.x}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="no-underline transition-colors hover:text-accent"
             >
               ↗ @smolexander
@@ -83,7 +83,7 @@ export function Hero() {
             <a
               href={socials.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="no-underline transition-colors hover:text-accent"
             >
               ↗ github
@@ -91,7 +91,7 @@ export function Hero() {
             <a
               href={socials.exovault}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="no-underline transition-colors hover:text-accent"
             >
               ↗ exovault.co

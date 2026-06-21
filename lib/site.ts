@@ -13,5 +13,9 @@ export const siteUrl =
  */
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-/** Prefixes a root-relative public asset path with the active base path. */
-export const asset = (path: string) => `${basePath}${path}`;
+/**
+ * Prefixes a root-relative public asset path with the active base path.
+ * Absolute URLs (http/https/protocol-relative) are returned unchanged.
+ */
+export const asset = (path: string) =>
+  /^(https?:)?\/\//.test(path) ? path : `${basePath}${path}`;

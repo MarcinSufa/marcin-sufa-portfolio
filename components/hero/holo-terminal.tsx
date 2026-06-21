@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { terminalColors, terminalScript } from "@/lib/content";
+import { prefersReducedMotion } from "@/lib/browser";
 
 const PROMPT = "$ ";
 const MAX_LINES = 5;
@@ -27,6 +28,20 @@ export function HoloTerminal() {
   const aliveRef = useRef(true);
 
   useEffect(() => {
+    // Reduced motion: show a static snapshot, no typing/blink timers.
+    if (prefersReducedMotion()) {
+      setLines([
+        { text: "$ orchestrate --plan", color: terminalColors.cmd },
+        { text: "✓ gemini     reviewing", color: terminalColors.purple },
+        { text: "✓ 214 passed", color: terminalColors.ok },
+        { text: "✓ shipped to prod", color: terminalColors.ok },
+      ]);
+      setTyping("$ ");
+      setTypingColor(terminalColors.cmd);
+      setCursorOn(true);
+      return;
+    }
+
     aliveRef.current = true;
     const schedule = (fn: () => void, ms: number) => {
       const id = setTimeout(fn, ms);
@@ -92,7 +107,10 @@ export function HoloTerminal() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-[11px] border border-[rgba(108,180,238,0.42)] bg-[rgba(12,16,26,0.42)] shadow-[0_14px_34px_rgba(0,0,0,0.5)] backdrop-blur-[9px]">
+    <div
+      aria-hidden
+      className="relative overflow-hidden rounded-[11px] border border-[rgba(108,180,238,0.42)] bg-[rgba(12,16,26,0.42)] shadow-[0_14px_34px_rgba(0,0,0,0.5)] backdrop-blur-[9px]"
+    >
       <div className="pointer-events-none absolute bottom-0 top-0 w-[30%] animate-[scan_3.6s_linear_infinite] bg-gradient-to-r from-transparent via-[rgba(108,180,238,0.20)] to-transparent" />
       <div className="flex items-center justify-between border-b border-[rgba(108,180,238,0.22)] px-[10px] py-[7px] font-mono text-[7.5px] tracking-[0.14em] text-[#9fc6ea]">
         <span>NEURAL ORCHESTRATOR</span>

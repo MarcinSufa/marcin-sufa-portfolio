@@ -11,16 +11,18 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3100",
     trace: "on-first-retry",
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
   ],
+  // Dedicated port + always-fresh server so e2e never reuses a stale dev
+  // server (the common cause of "missing JS chunk" flakes on :3000).
   webServer: {
-    command: "pnpm dev",
-    url: "http://localhost:3000",
-    reuseExistingServer: !process.env.CI,
+    command: "pnpm dev --port 3100",
+    url: "http://localhost:3100",
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

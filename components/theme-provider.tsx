@@ -4,7 +4,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -21,14 +20,15 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 const STORAGE_KEY = "ms-theme";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Default matches the no-flash script in layout.tsx (dark unless stored light).
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  // Sync from the DOM class the no-flash script already applied.
-  useEffect(() => {
-    const isLight = document.documentElement.classList.contains("theme-light");
-    setTheme(isLight ? "light" : "dark");
-  }, []);
+  // Initialise from the DOM class the no-flash script already applied, so the
+  // toggle icon is correct on first client paint (SSR defaults to dark; the
+  // toggle glyph is suppressHydrationWarning'd to absorb the mismatch).
+  const [theme, setTheme] = useState<Theme>(() =>
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("theme-light")
+      ? "light"
+      : "dark",
+  );
 
   const apply = useCallback((next: Theme) => {
     document.documentElement.classList.toggle("theme-light", next === "light");

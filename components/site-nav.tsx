@@ -40,7 +40,9 @@ export function SiteNav() {
           }
           className="flex h-[38px] w-[38px] items-center justify-center rounded-[10px] border border-border bg-surface text-[15px] text-text transition-colors hover:border-accent"
         >
-          <span aria-hidden>{themeLabel}</span>
+          <span aria-hidden suppressHydrationWarning>
+            {themeLabel}
+          </span>
         </button>
         <a
           href="#contact"

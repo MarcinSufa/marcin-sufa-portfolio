@@ -1,10 +1,14 @@
 import { ImageResponse } from "next/og";
+import { hero } from "@/lib/content";
+import { siteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export const alt = "Marcin Sufa — AI-native Frontend Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const domain = siteUrl.replace(/^https?:\/\//, "");
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -29,7 +33,7 @@ export default function OpengraphImage() {
             alignItems: "center",
             gap: 14,
             color: "#ff8a5c",
-            fontSize: 26,
+            fontSize: 24,
             letterSpacing: 2,
           }}
         >
@@ -50,46 +54,34 @@ export default function OpengraphImage() {
           >
             MS
           </div>
-          SENIOR FRONTEND · AI AGENTS
+          {hero.badge}
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 84,
+              flexWrap: "wrap",
+              fontSize: 82,
               fontWeight: 700,
               letterSpacing: -2,
-              lineHeight: 1.0,
+              lineHeight: 1.02,
               color: "#f1ece4",
             }}
           >
-            <span style={{ color: "#ff8a5c" }}>AI-native</span>
-            <span>&nbsp;frontend</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 84,
-              fontWeight: 700,
-              letterSpacing: -2,
-              lineHeight: 1.0,
-              color: "#f1ece4",
-            }}
-          >
-            engineer.
+            <span style={{ color: "#ff8a5c" }}>{hero.headlineAccent}</span>
+            <span>&nbsp;{hero.headlineRest}</span>
           </div>
           <div
             style={{
               display: "flex",
               marginTop: 28,
-              fontSize: 30,
+              fontSize: 29,
               color: "#aaa39b",
-              maxWidth: 880,
+              maxWidth: 900,
             }}
           >
-            I take products from first pixel to production — and orchestrate a fleet
-            of AI agents to ship at the pace of a whole team.
+            {hero.subhead}
           </div>
         </div>
 
@@ -103,7 +95,7 @@ export default function OpengraphImage() {
           }}
         >
           <span style={{ color: "#f1ece4", fontWeight: 600 }}>Marcin Sufa</span>
-          <span>marcinsufa.com</span>
+          <span>{domain}</span>
         </div>
       </div>
     ),

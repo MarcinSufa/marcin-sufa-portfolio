@@ -30,7 +30,7 @@ export const socials = {
   exovault: "https://exovault.co",
   linkedin: "https://www.linkedin.com/in/marcin-sufa-05711492/",
   email: "sufa.marcin@gmail.com",
-  cv: "/assets/Marcin-Sufa-CV.pdf",
+  cv: "/assets/Marcin_Sufa_CV.pdf",
 } as const;
 
 /* ----------------------------------------------------------------
@@ -489,7 +489,7 @@ export const about = {
   ],
   meta: [
     { label: "day job", value: "frontend at Sysdyne (via Coldrun)" },
-    { label: "currently", value: "building Exovault and Fractal" },
+    { label: "currently", value: "building ExoVault and Fractal" },
     { label: "reading", value: "Marcus Aurelius, Meditations" },
   ],
 } as const;
