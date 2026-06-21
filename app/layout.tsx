@@ -85,6 +85,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Preload the LCP hero image (responsive) so it's fetched first. */}
+        <link
+          rel="preload"
+          as="image"
+          href={hero.portrait.src}
+          imageSrcSet={`${hero.portrait.srcSmall} 640w, ${hero.portrait.src} 1160w`}
+          imageSizes="(max-width: 720px) 90vw, 560px"
+          fetchPriority="high"
+        />
         <script dangerouslySetInnerHTML={{ __html: noFlashThemeScript }} />
       </head>
       <body>

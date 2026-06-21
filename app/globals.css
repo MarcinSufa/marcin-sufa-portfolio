@@ -148,6 +148,21 @@ a {
   color: inherit;
 }
 
+/* Skip rendering + layout of below-the-fold sections until they're scrolled
+   near. On this long single page it cuts the initial layout/paint cost a lot,
+   improving LCP and Speed Index. contain-intrinsic-size reserves space so the
+   scrollbar doesn't jump. */
+#experience,
+#work,
+#philosophy,
+#fleet,
+#stack,
+#about,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
 /* Reusable horizontal page padding (overridable on mobile) */
 .pad-x {
   padding-left: 40px;

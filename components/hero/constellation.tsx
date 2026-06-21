@@ -253,7 +253,6 @@ export function Constellation() {
           width={hero.portrait.width}
           height={hero.portrait.height}
           fetchPriority="high"
-          decoding="async"
           className="relative block w-full"
           style={{ filter: "var(--portrait-shadow)" }}
         />
