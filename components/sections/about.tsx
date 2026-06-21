@@ -38,7 +38,7 @@ export function About() {
               width={809}
               height={712}
               sizes="(max-width: 720px) 90vw, 360px"
-              className="absolute inset-0 h-full w-full object-cover object-[50%_20%] grayscale contrast-[1.05]"
+              className="absolute inset-0 h-full w-full object-cover object-[66%_22%] grayscale contrast-[1.05]"
             />
             <div
               className="absolute inset-0"

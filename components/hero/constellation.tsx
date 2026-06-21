@@ -272,10 +272,7 @@ export function Constellation() {
           priority
           sizes="(max-width: 720px) 90vw, 560px"
           className="relative block w-full"
-          style={{
-            filter:
-              "drop-shadow(0 24px 44px rgba(0,0,0,0.6)) brightness(1.07) saturate(1.05)",
-          }}
+          style={{ filter: "var(--portrait-shadow)" }}
         />
       </div>
 
@@ -285,14 +282,14 @@ export function Constellation() {
         className="pointer-events-none absolute inset-0 z-[3] h-full w-full"
       />
 
-      <div className="absolute left-1/2 top-[88%] z-[4] w-[176px] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-[88%] z-[4] w-[176px] -translate-x-1/2 -translate-y-1/2 max-[720px]:scale-[0.66]">
         <HoloTerminal />
       </div>
 
       {agentChips.map((chip) => (
         <div
           key={chip.name}
-          className="absolute z-[5] -translate-x-1/2 -translate-y-1/2"
+          className="absolute z-[5] -translate-x-1/2 -translate-y-1/2 max-[720px]:scale-[0.72]"
           style={{
             left: chip.left,
             top: chip.top,
@@ -300,7 +297,7 @@ export function Constellation() {
             animationDelay: chip.delay,
           }}
         >
-          <div className="flex items-center gap-2 rounded-full border border-[rgba(240,236,228,0.13)] bg-[rgba(20,17,26,0.82)] py-[7px] pl-2 pr-[13px] shadow-[0_10px_24px_rgba(0,0,0,0.4)] backdrop-blur-[8px]">
+          <div className="flex items-center gap-2 rounded-full border border-[color:var(--chip-border)] bg-[var(--chip-bg)] py-[7px] pl-2 pr-[13px] shadow-[var(--chip-shadow)] backdrop-blur-[8px]">
             <span
               className="flex h-[26px] w-[26px] items-center justify-center rounded-full font-display text-[12px] font-bold"
               style={{

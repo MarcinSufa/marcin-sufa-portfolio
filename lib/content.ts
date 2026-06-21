@@ -254,17 +254,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Asistel",
-    badge: "AI VOICE AGENT · SAAS",
-    title: "Asistel",
-    tagline: "AI phone assistant for pharmacies",
-    desc: "An AI phone assistant for pharmacies. Callers ask about drug availability, make reservations and request callbacks — it transcribes, routes and follows up automatically. Multi-tenant SaaS with a live pilot, auto-deployed to production.",
-    techs: ["Next.js", "Prisma", "PostgreSQL", "ElevenLabs", "Coolify"],
-    link: "https://asistel.pl",
-    linkLabel: "Visit asistel.pl ↗",
-    screenshotPlaceholder: "Asistel",
-  },
-  {
     name: "ExoVault",
     badge: "MCP SERVER · AGENT MEMORY",
     title: "ExoVault",
@@ -273,6 +262,7 @@ export const projects: Project[] = [
     techs: ["MCP", "TypeScript", "Semantic search", "Encryption"],
     link: "https://exovault.co",
     linkLabel: "Visit exovault.co ↗",
+    screenshot: "/assets/exovault-shot.png",
     screenshotPlaceholder: "ExoVault",
   },
   {
@@ -283,7 +273,20 @@ export const projects: Project[] = [
     desc: "A multi-agent cockpit: launch agents into isolated git worktrees, watch them work in live terminal panes, and gate their specs before they run. The control room for an agent fleet.",
     techs: ["Electron", "Multi-agent", "Git worktrees"],
     linkLabel: "Private — in development",
+    screenshot: "/assets/fractal-shot.png",
     screenshotPlaceholder: "Fractal",
+  },
+  {
+    name: "Asistel",
+    badge: "AI VOICE AGENT · SAAS",
+    title: "Asistel",
+    tagline: "AI phone assistant for pharmacies",
+    desc: "An AI phone assistant for pharmacies. Callers ask about drug availability, make reservations and request callbacks — it transcribes, routes and follows up automatically. Multi-tenant SaaS with a live pilot, auto-deployed to production.",
+    techs: ["Next.js", "Prisma", "PostgreSQL", "ElevenLabs", "Coolify"],
+    link: "https://asistel.pl",
+    linkLabel: "Visit asistel.pl ↗",
+    screenshot: "/assets/asistel-shot.png",
+    screenshotPlaceholder: "Asistel",
   },
   {
     name: "Dodomarket",
@@ -310,16 +313,16 @@ export const projects: Project[] = [
     screenshotPlaceholder: "Domocni",
   },
   {
-    name: "Shoemaster",
-    badge: "WEB APP · E-COMMERCE",
-    title: "Shoemaster",
-    tagline: "E-commerce SPA with Firebase",
-    desc: "An e-commerce single-page app built in React / Redux with a Firebase backend — cart persisted to localStorage, Firebase authentication and full CRUD on the database.",
-    techs: ["React", "Redux", "Firebase"],
-    link: "https://marcinsufa.github.io/Shoemaster/",
-    linkLabel: "Live demo ↗",
-    screenshot: "https://media.giphy.com/media/lPXACsvLyuoEaR4bA5/giphy.gif",
-    screenshotPlaceholder: "Shoemaster",
+    name: "CircleK",
+    badge: "WEB APP · JOB PORTAL",
+    title: "Praca CircleK.pl",
+    tagline: "Job site for Circle K Poland",
+    desc: "The careers site for Circle K in Poland. I reworked the layout, added animations, connected it to the CMS and built a job-search map with offers integrated with eRecruiter.",
+    techs: ["Vue", "WordPress (CMS)", "ACF", "HTML", "Sass", "JavaScript", "jQuery", "Google Maps API"],
+    link: "https://praca.circlek.pl",
+    linkLabel: "Visit praca.circlek.pl ↗",
+    screenshot: "https://media.giphy.com/media/RNbErxcO8DBGor6Pmy/giphy.gif",
+    screenshotPlaceholder: "Praca CircleK",
   },
 ];
 
@@ -477,14 +480,16 @@ export const stackGroups: StackGroup[] = [
  * 06 — About
  * ---------------------------------------------------------------- */
 export const about = {
-  heading: "Born and based in Warsaw.",
+  heading: "I teach machines to remember.",
   portrait: { src: "/assets/marcin-portrait.png", alt: "Marcin Sufa" },
   paragraphs: [
-    "I'm Marcin — a frontend engineer and indie builder, born, working and living in Warsaw. My grandparents and cousins are down in the Beskid mountains around Żywiec, so that corner of Poland feels like home too. I build in public as @smolexander, mostly about my Claude Code tooling and ExoVault.",
-    "I'm deep in self-improving agent workflows — turning every lesson into an enforced guardrail. Away from the keyboard I'm into stoic philosophy (Marcus Aurelius, Ryan Holiday) and the long game of self-improvement.",
+    "I'm Marcin, a frontend engineer and indie builder based in Warsaw. I build in public as @smolexander, mostly skills and plugins for Claude Code.",
+    "As a kid I struggled with my memory, and it taught me how much of who we are is built on it. Memory shapes how we think and how we perform. So when I started working with AI agents, their forgetting was the first thing I wanted to fix. That's ExoVault, my side project: an encrypted, MCP-native memory layer that lets agents remember across sessions, and gives them an identity of their own.",
+    "I'm also deep in self-improving agent workflows, where every lesson an agent learns turns into a guardrail it can't break again. I run my own life on roughly the same idea. Away from the keyboard that's stoic philosophy (Marcus Aurelius, Ryan Holiday) and the long game of getting a little better each day.",
   ],
   meta: [
-    { label: "currently", value: "building Asistel · designing the ExoVault Clipper" },
+    { label: "day job", value: "frontend at Sysdyne (via Coldrun)" },
+    { label: "currently", value: "building Exovault and Fractal" },
     { label: "reading", value: "Marcus Aurelius, Meditations" },
   ],
 } as const;

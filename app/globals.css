@@ -38,6 +38,17 @@
   --accent2: #ffb38c;
   --accent-rgb: 255, 138, 92;
   --shadow: rgba(0, 0, 0, 0.45);
+  /* Hero agent chips + portrait — theme-aware so light mode reads correctly. */
+  --chip-bg: rgba(20, 17, 26, 0.82);
+  --chip-border: rgba(240, 236, 228, 0.13);
+  --chip-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --portrait-shadow: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.6)) brightness(1.07)
+    saturate(1.05);
+  /* Frosted-glass panel (hero subtitle). */
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --glass-blur: 4px;
+  --glass-shadow: none;
 }
 
 /* ===== Light theme ===== */
@@ -55,6 +66,15 @@
   --accent2: #ff8a5c;
   --accent-rgb: 194, 66, 29;
   --shadow: rgba(40, 30, 20, 0.12);
+  --chip-bg: rgba(255, 255, 255, 0.9);
+  --chip-border: rgba(40, 30, 20, 0.1);
+  --chip-shadow: 0 8px 22px rgba(40, 30, 20, 0.14);
+  --portrait-shadow: drop-shadow(0 20px 36px rgba(40, 30, 20, 0.22))
+    saturate(1.02);
+  --glass-bg: rgba(255, 255, 255, 0.42);
+  --glass-border: rgba(40, 30, 20, 0.12);
+  --glass-blur: 3px;
+  --glass-shadow: 0 10px 30px rgba(40, 30, 20, 0.1);
 }
 
 /* ============================================================
@@ -66,6 +86,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Belt-and-suspenders against horizontal scroll on mobile. `clip` (not
+     `hidden`) never creates a scroll container, so the sticky nav is safe. */
+  overflow-x: clip;
 }
 
 body {
@@ -154,9 +177,12 @@ a {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(7px); }
 }
+/* Chip bob only — centering is handled by the `translate` property
+   (Tailwind v4 -translate-x/y-1/2), so the keyframe must NOT re-apply
+   translate(-50%,-50%) or it would double up and offset the chip. */
 @keyframes nodefloat {
-  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-  50% { transform: translate(-50%, -50%) translateY(-7px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
 }
 @keyframes eq {
   0%, 100% { transform: scaleY(0.32); }

@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/ui/reveal";
 import { contact, socials } from "@/lib/content";
+import { asset } from "@/lib/site";
 
 export function Contact() {
   return (
@@ -22,7 +23,7 @@ export function Contact() {
             {socials.email}
           </a>
           <a
-            href={socials.cv}
+            href={asset(socials.cv)}
             download
             className="rounded-[12px] border border-border px-[26px] py-[14px] font-display text-[15px] font-semibold text-text no-underline transition-colors hover:border-accent"
           >

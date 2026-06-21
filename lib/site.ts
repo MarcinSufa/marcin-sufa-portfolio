@@ -4,3 +4,14 @@
  */
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://marcinsufa.com";
+
+/**
+ * Base path the app is served under. Empty for root deploys (Vercel/custom
+ * domain); set to e.g. "/marcin-sufa-portfolio" for a GitHub Pages project site.
+ * `next/image` applies this automatically; plain <a href> to /public assets
+ * must be wrapped with `asset()`.
+ */
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Prefixes a root-relative public asset path with the active base path. */
+export const asset = (path: string) => `${basePath}${path}`;

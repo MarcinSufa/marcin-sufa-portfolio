@@ -2,10 +2,11 @@ import { ParticleFieldLazy } from "@/components/hero/particle-field-lazy";
 import { Constellation } from "@/components/hero/constellation";
 import { StatsBar } from "@/components/hero/stats-bar";
 import { hero, socials } from "@/lib/content";
+import { asset } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section aria-label="Introduction" className="relative min-h-[660px] overflow-hidden">
+    <section aria-label="Introduction" className="relative overflow-hidden">
       <ParticleFieldLazy />
 
       <div
@@ -34,7 +35,7 @@ export function Hero() {
         }}
       />
 
-      <div className="pad-x relative mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-center gap-9 px-10 pb-2 pt-[60px]">
+      <div className="pad-x relative mx-auto grid min-h-[600px] max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-center gap-9 px-10 pb-0 pt-[60px] max-[720px]:min-h-0 max-[720px]:gap-6 max-[720px]:pt-9">
         <div>
           <div className="inline-flex items-center gap-[9px] rounded-full border border-border bg-surface px-3 py-[6px] font-mono text-[12px] text-accent">
             <span className="h-2 w-2 animate-[pulseDot_1.8s_ease-in-out_infinite] rounded-full bg-[#4fd690]" />
@@ -45,7 +46,14 @@ export function Hero() {
             <br />
             {hero.headlineRest}
           </h1>
-          <p className="mt-6 max-w-[46ch] text-[clamp(15px,1.3vw,18px)] leading-[1.56] text-text2">
+          <p
+            className="mt-6 inline-block max-w-[46ch] rounded-[14px] border border-[color:var(--glass-border)] bg-[var(--glass-bg)] px-[18px] py-[14px] text-[clamp(15px,1.3vw,18px)] leading-[1.56] text-text2"
+            style={{
+              backdropFilter: "blur(var(--glass-blur)) saturate(1.25)",
+              WebkitBackdropFilter: "blur(var(--glass-blur)) saturate(1.25)",
+              boxShadow: "var(--glass-shadow)",
+            }}
+          >
             {hero.subhead}
           </p>
           <div className="mt-[30px] flex flex-wrap gap-3">
@@ -56,7 +64,7 @@ export function Hero() {
               View work →
             </a>
             <a
-              href={socials.cv}
+              href={asset(socials.cv)}
               download
               className="rounded-xl border border-border px-[26px] py-[14px] font-display text-[15px] font-semibold text-text no-underline transition-colors hover:border-accent"
             >
@@ -91,7 +99,9 @@ export function Hero() {
           </div>
         </div>
 
-        <Constellation />
+        <div className="w-full self-end">
+          <Constellation />
+        </div>
       </div>
 
       <StatsBar />

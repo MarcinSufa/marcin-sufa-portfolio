@@ -38,8 +38,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# design source (reference material — heavy Gemini renders, Claude .dc.html bundle)
-/design/
+# design source (reference material — heavy Gemini renders, Claude .dc.html bundles)
+/design*/
 
 # local QA screenshots / browser artifacts
 /.playwright-mcp/
