@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { agentChips, hero } from "@/lib/content";
 import { HoloTerminal } from "@/components/hero/holo-terminal";
-import { clampDpr, watchVisibility } from "@/lib/browser";
+import { clampDpr, isSmallScreen, watchVisibility } from "@/lib/browser";
 
 const HANDS_Y = 0.9;
 const SPLIT = 0.42; // u below this draws in FRONT (over the chest), rest BEHIND
@@ -50,6 +50,9 @@ export function Constellation() {
     const back = backRef.current;
     const front = frontRef.current;
     if (!host || !back || !front) return;
+
+    // Mobile: no ribbon animation (canvases stay blank — static hero).
+    if (isSmallScreen()) return;
 
     const targets = agentChips.map((c) => ({
       x: parseFloat(c.left) / 100,

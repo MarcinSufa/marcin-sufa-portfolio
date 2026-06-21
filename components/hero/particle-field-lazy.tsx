@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { isSmallScreen } from "@/lib/browser";
 
 /**
  * Loads the three.js particle field only on the client, in its own chunk,
@@ -21,6 +22,8 @@ export function ParticleFieldLazy() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // Mobile: skip the field entirely (no three.js download/init).
+    if (isSmallScreen()) return;
     const w = window as Window &
       typeof globalThis & {
         requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;

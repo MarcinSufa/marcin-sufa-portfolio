@@ -225,6 +225,20 @@ a {
 }
 
 /* ============================================================
+   Mobile (<=720px): fully static hero for performance. The JS-driven
+   animations (3D field, ribbon canvases, terminal typing) are skipped in
+   their components; this kills the remaining CSS animations inside the hero
+   (glow, badge pulse, floating chips, terminal scan). Desktop is untouched.
+   ============================================================ */
+@media (max-width: 720px) {
+  section[aria-label="Introduction"] *,
+  section[aria-label="Introduction"] *::before,
+  section[aria-label="Introduction"] *::after {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
    Respect reduced-motion: stop the decorative loops & reveals.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {

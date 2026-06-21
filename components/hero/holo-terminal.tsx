@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { terminalColors, terminalScript } from "@/lib/content";
+import { isSmallScreen } from "@/lib/browser";
 
 const PROMPT = "$ ";
 const MAX_LINES = 5;
@@ -27,6 +28,20 @@ export function HoloTerminal() {
   const aliveRef = useRef(true);
 
   useEffect(() => {
+    // Mobile: static snapshot, no typing/blink timers.
+    if (isSmallScreen()) {
+      setLines([
+        { text: "$ orchestrate --plan", color: terminalColors.cmd },
+        { text: "✓ gemini     reviewing", color: terminalColors.purple },
+        { text: "✓ 214 passed", color: terminalColors.ok },
+        { text: "✓ shipped to prod", color: terminalColors.ok },
+      ]);
+      setTyping("$ ");
+      setTypingColor(terminalColors.cmd);
+      setCursorOn(true);
+      return;
+    }
+
     aliveRef.current = true;
     const schedule = (fn: () => void, ms: number) => {
       const id = setTimeout(fn, ms);

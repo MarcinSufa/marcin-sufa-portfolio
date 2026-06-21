@@ -7,6 +7,18 @@ export function prefersReducedMotion(): boolean {
   );
 }
 
+/**
+ * True on phone-sized viewports (<=720px). Used to skip the heavy hero
+ * animations on mobile (perf: no three.js, no canvas loops, no continuous
+ * motion that wrecks Speed Index). Desktop keeps the full experience.
+ */
+export function isSmallScreen(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 720px)").matches
+  );
+}
+
 /** Device pixel ratio, clamped so we never allocate oversized canvases. */
 export function clampDpr(max = 2): number {
   if (typeof window === "undefined") return 1;
