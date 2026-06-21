@@ -163,7 +163,7 @@ export const experience: ExperienceEntry[] = [
       "Establishing a clean, maintainable frontend architecture across the platform.",
       "Building in-house POC solutions for data- and chart-heavy UI/UX apps.",
     ],
-    techs: ["Vue 3", "Vite", "Pinia", "PrimeVue", "Design system"],
+    techs: ["Vue 3", "React", "Vite", "Pinia", "PrimeVue", "Design system"],
     current: true,
   },
   {

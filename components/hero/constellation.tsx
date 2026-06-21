@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { agentChips, hero } from "@/lib/content";
 import { HoloTerminal } from "@/components/hero/holo-terminal";
-import { clampDpr, prefersReducedMotion, watchVisibility } from "@/lib/browser";
+import { clampDpr, watchVisibility } from "@/lib/browser";
 
 const HANDS_Y = 0.9;
 const SPLIT = 0.42; // u below this draws in FRONT (over the chest), rest BEHIND
@@ -51,8 +51,6 @@ export function Constellation() {
     const back = backRef.current;
     const front = frontRef.current;
     if (!host || !back || !front) return;
-
-    const prefersReduced = prefersReducedMotion();
 
     const targets = agentChips.map((c) => ({
       x: parseFloat(c.left) / 100,
@@ -214,31 +212,14 @@ export function Constellation() {
       cancelAnimationFrame(raf);
     };
 
-    let stopVisibility = () => {};
-    let resizeObserver: ResizeObserver | null = null;
-
-    if (prefersReduced) {
-      // One static frame, repainted on layout changes (no animation loop).
-      intro = 1;
-      draw(1000);
-      const repaint = () => {
-        last = 0;
-        draw(34);
-      };
-      resizeObserver =
-        "ResizeObserver" in window ? new ResizeObserver(repaint) : null;
-      resizeObserver?.observe(host);
-    } else {
-      // Only animate while the hero is on screen.
-      stopVisibility = watchVisibility(host, (visible) =>
-        visible ? start() : stop(),
-      );
-    }
+    // Always animate (decorative), but only while the hero is on screen.
+    const stopVisibility = watchVisibility(host, (visible) =>
+      visible ? start() : stop(),
+    );
 
     return () => {
       stop();
       stopVisibility();
-      resizeObserver?.disconnect();
       host.removeEventListener("mousemove", onMove);
       host.removeEventListener("mouseleave", onLeave);
     };
