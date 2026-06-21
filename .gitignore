@@ -45,3 +45,7 @@ yarn-error.log*
 /.playwright-mcp/
 /*.png
 /*.jpeg
+
+# local dev-process files — kept on disk, not shipped in the public repo
+/.claude/
+/CLAUDE.md
